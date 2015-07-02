@@ -15,7 +15,7 @@
 @property NSString *appId;
 @property NSString *channel_tag;
 @property NSDictionary *last_update;
-@property Boolean ignore_deploy; 
+@property Boolean ignore_deploy;
 @property NSString *version_label;
 @property NSString *currentUUID;
 @property dispatch_queue_t serialQueue;
@@ -198,7 +198,7 @@ typedef struct JsonHttpResponse {
 
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
             NSString *libraryDirectory = [paths objectAtIndex:0];
-            NSString *filePath = [NSString stringWithFormat:@"%@/%@", libraryDirectory,@"www.zip"];
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", libraryDirectory, @"Caches",@"www.zip"];
 
             NSLog(@"Queueing Download...");
             [self.downloadManager addDownloadWithFilename:filePath URL:url];
@@ -251,7 +251,7 @@ typedef struct JsonHttpResponse {
     NSString *ignore = [prefs stringForKey:@"ionicdeploy_version_ignore"];
     if (ignore == nil) {
         ignore = NOTHING_TO_IGNORE;
-    } 
+    }
     NSLog(@"uuid is: %@", uuid);
     if (self.ignore_deploy) {
        NSLog(@"ignore deploy");
@@ -266,7 +266,7 @@ typedef struct JsonHttpResponse {
 
 
             NSString *query = [NSString stringWithFormat:@"cordova_js_bootstrap_resource=%@", self.cordova_js_resource];
-            
+
             NSURLComponents *components = [NSURLComponents new];
             components.scheme = @"file";
             components.path = [NSString stringWithFormat:@"%@/%@/index.html", libraryDirectory, uuid];
