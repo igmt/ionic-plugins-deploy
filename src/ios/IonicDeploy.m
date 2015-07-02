@@ -220,8 +220,8 @@ typedef struct JsonHttpResponse {
 
         NSString *uuid = [[NSUserDefaults standardUserDefaults] objectForKey:@"uuid"];
 
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@", libraryDirectory, @"www.zip"];
-        NSString *extractPath = [NSString stringWithFormat:@"%@/%@/", libraryDirectory, uuid];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", libraryDirectory, @"Caches", @"www.zip"];
+        NSString *extractPath = [NSString stringWithFormat:@"%@/%@/%@/", libraryDirectory, @"Caches", uuid];
 
         NSLog(@"Path for zip file: %@", filePath);
 
@@ -269,7 +269,7 @@ typedef struct JsonHttpResponse {
 
             NSURLComponents *components = [NSURLComponents new];
             components.scheme = @"file";
-            components.path = [NSString stringWithFormat:@"%@/%@/index.html", libraryDirectory, uuid];
+            components.path = [NSString stringWithFormat:@"%@/%@/%@/index.html", libraryDirectory, @"Caches", uuid];
             components.query = query;
 
             self.currentUUID = uuid;
@@ -421,7 +421,7 @@ typedef struct JsonHttpResponse {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *libraryDirectory = [paths objectAtIndex:0];
 
-    NSString *pathToFolder = [NSString stringWithFormat:@"%@/%@/", libraryDirectory, uuid];
+    NSString *pathToFolder = [NSString stringWithFormat:@"%@/%@/%@/", libraryDirectory, @"Caches", uuid];
 
     BOOL success = [[NSFileManager defaultManager] removeItemAtPath:pathToFolder error:nil];
 
